@@ -3,12 +3,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:progress_state_button/iconed_button.dart';
 import 'package:progress_state_button/progress_button.dart';
 
-class FirestoreTablePage extends StatefulWidget {
+class ReportScreen extends StatefulWidget {
   @override
-  State<FirestoreTablePage> createState() => _FirestoreTablePageState();
+  State<ReportScreen> createState() => _ReportScreenState();
 }
 
-class _FirestoreTablePageState extends State<FirestoreTablePage> {
+class _ReportScreenState extends State<ReportScreen> {
 
   ButtonState buttonState = ButtonState.idle;
 
@@ -22,7 +22,7 @@ class _FirestoreTablePageState extends State<FirestoreTablePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Firestore Table'),
+        title: const Text('Reports Screen'),
       ),
       body: Theme(
         data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
@@ -45,8 +45,9 @@ class _FirestoreTablePageState extends State<FirestoreTablePage> {
               rows.add(DataRow(
                 cells: [
                   // DataCell(Text(data['sn'].toString())),
+                  DataCell(Text(data['address'])),
+                  DataCell(Text(data['category'])),
                   DataCell(Text(data['description'])),
-                  DataCell(Text(data['reported_by'])),
                   DataCell(_remarkButton()),
                 ],
               ));
@@ -59,20 +60,29 @@ class _FirestoreTablePageState extends State<FirestoreTablePage> {
                   // DataColumn(label: Text('SN')),
                   DataColumn(
                       label: Text(
+                        'Address',
+                        style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w800,
+                            color: Colors.deepOrange),
+                      )),
+                  DataColumn(
+                      label: Text(
+                        'Category',
+                        style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w800,
+                            color: Colors.deepOrange),
+                      )),
+                  DataColumn(
+                      label: Text(
                     'Description',
                     style: TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.w800,
                         color: Colors.deepOrange),
                   )),
-                  DataColumn(
-                      label: Text(
-                    'Reported by',
-                    style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w800,
-                        color: Colors.deepOrange),
-                  )),
+
                   DataColumn(
                       label: Text(
                     'Remark',
@@ -111,7 +121,7 @@ class _FirestoreTablePageState extends State<FirestoreTablePage> {
           ),
           color: Colors.green.shade400)
     }, onPressed: (){}, height: 25, state: ButtonState.idle,
-    radius: 50,
+    radius: 20,
     );
   }
 

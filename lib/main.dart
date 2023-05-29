@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:web_dashboard_app_tut/screens/dashboard_screen.dart';
-import 'package:web_dashboard_app_tut/screens/login.dart';
+import 'package:web_dashboard_app_tut/screens/home.dart';
 
 bool shouldUseFirebaseEmulator = false;
 
@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
         primaryColor: Colors.lightGreen
       ),
       debugShowCheckedModeBanner: false,
-      home: const DashboardScreen(),
+      home: const HomeScreen(),
     );
   }
 }

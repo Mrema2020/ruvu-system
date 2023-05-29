@@ -4,6 +4,7 @@ import 'package:web_dashboard_app_tut/screens/report2.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 
 import 'add_report.dart';
+
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({Key? key}) : super(key: key);
 
@@ -56,71 +57,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
     return Scaffold(
       body: Row(
         children: [
-          //Let's start by adding the Navigation Rail
-          NavigationRail(
-              // leading: Icon(Icons.airplane_ticket),
-              useIndicator: true,
-              extended: isExpanded,
-              backgroundColor: Colors.deepPurple.shade400,
-              unselectedIconTheme:
-                  const IconThemeData(color: Colors.white, opacity: 1),
-              unselectedLabelTextStyle: const TextStyle(
-                color: Colors.white,
-              ),
-              selectedIconTheme:
-                  IconThemeData(color: Colors.deepPurple.shade900),
-              destinations: [
-                NavigationRailDestination(
-                  icon: IconButton(
-                    tooltip: 'Home',
-                    icon: const Icon(Icons.home),
-                    onPressed: () {},
-                  ),
-                  label: const Text("Home"),
-                ),
-                NavigationRailDestination(
-                    icon: IconButton(
-                      tooltip: 'View Reports',
-                      icon: const Icon(Icons.bookmarks),
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => FirestoreTablePage()));
-                      },
-                    ),
-                    label: const Text('Reports')),
-                NavigationRailDestination(
-                    icon: IconButton(
-                      tooltip: 'Report Abuse',
-                      icon: const Icon(Icons.add),
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const AddReport()));
-                      },
-                    ),
-                    label: const Text('Add report')),
-                NavigationRailDestination(
-                  icon: IconButton(
-                    tooltip: 'View Users',
-                      icon: const Icon(Icons.people),
-                      onPressed: () {
-                        //  Navigator.push(context, MaterialPageRoute(builder: (context) => const MapPage()));
-                      }),
-                  label: const Text("Users"),
-                ),
-                NavigationRailDestination(
-                  icon: IconButton(
-                    tooltip: 'Logout',
-                    icon: const Icon(Icons.logout),
-                    onPressed: () {},
-                  ),
-                  label: const Text("Logout"),
-                ),
-              ],
-              selectedIndex: 0),
           Expanded(
             child: Padding(
               padding: const EdgeInsets.all(60.0),
@@ -143,9 +79,13 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           icon: const Icon(Icons.menu),
                         ),
                         const CircleAvatar(
-                          backgroundImage: NetworkImage(
-                              "https://faces-img.xcdn.link/image-lorem-face-3430.jpg"),
+                          backgroundColor: Colors.green,
                           radius: 26.0,
+                          child: Icon(
+                            Icons.person,
+                            color: Colors.black,
+                            size: 30,
+                          ),
                         ),
                       ],
                     ),
@@ -157,15 +97,25 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Flexible(
-                          child: Card(
-                            color: Colors.pinkAccent,
-                            child: Padding(
-                              padding: const EdgeInsets.all(18.0),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10.0),
+                              gradient: const LinearGradient(
+                                begin: Alignment.topRight,
+                                end: Alignment.bottomLeft,
+                                colors: [
+                                  Color(0xFF175F1C),
+                                  Color(0xFF49DE8E),
+                                ],
+                              ),
+                            ),
+                            child: const Padding(
+                              padding: EdgeInsets.all(18.0),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Row(
-                                    children: const [
+                                    children: [
                                       Icon(
                                         Icons.article,
                                         size: 26.0,
@@ -182,14 +132,17 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                       )
                                     ],
                                   ),
-                                  const SizedBox(
+                                  SizedBox(
                                     height: 20.0,
                                   ),
-                                  const Text(
-                                    "34",
-                                    style: TextStyle(
-                                      fontSize: 36,
-                                      fontWeight: FontWeight.bold,
+                                  Center(
+                                    child: Text(
+                                      "34",
+                                      style: TextStyle(
+                                        fontSize: 40,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black54
+                                      ),
                                     ),
                                   )
                                 ],
@@ -197,43 +150,53 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             ),
                           ),
                         ),
+                        const SizedBox(
+                          width: 10,
+                        ),
                         Flexible(
-                          child: Card(
-                            color: Colors.grey,
-                            child: Padding(
-                              padding: const EdgeInsets.all(18.0),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10.0),
+                              gradient: const LinearGradient(
+                                begin: Alignment.topRight,
+                                end: Alignment.bottomLeft,
+                                colors: [
+                                  Color(0xFF151313),
+                                  Color(0xFF175F1C),
+                                ],
+                              ),
+                            ),
+                            child: const Padding(
+                              padding: EdgeInsets.all(18.0),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Row(
-                                    children: const [
-                                      Icon(
-                                        Icons.comment,
-                                        size: 26.0,
-                                        color: Colors.red,
-                                      ),
+                                    children: [
+                                      Icon(Icons.article,
+                                          size: 26.0, color: Colors.white60),
                                       SizedBox(
                                         width: 15.0,
                                       ),
                                       Text(
-                                        "Month Reports",
+                                        "Monthly Reports",
                                         style: TextStyle(
-                                          color: Colors.red,
-                                          fontSize: 25.0,
-                                          fontWeight: FontWeight.bold,
-                                        ),
+                                            fontSize: 25.0,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.white60),
                                       )
                                     ],
                                   ),
-                                  const SizedBox(
+                                  SizedBox(
                                     height: 20.0,
                                   ),
-                                  const Text(
-                                    "123",
-                                    style: TextStyle(
-                                      color: Colors.red,
-                                      fontSize: 36,
-                                      fontWeight: FontWeight.bold,
+                                  Center(
+                                    child: Text(
+                                      "120",
+                                      style: TextStyle(
+                                          fontSize: 40,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white60),
                                     ),
                                   )
                                 ],
@@ -241,20 +204,33 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             ),
                           ),
                         ),
+                        const SizedBox(
+                          width: 10,
+                        ),
                         Flexible(
-                          child: Card(
-                            color: Colors.cyan,
-                            child: Padding(
-                              padding: const EdgeInsets.all(18.0),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10.0),
+                              gradient: const LinearGradient(
+                                begin: Alignment.topRight,
+                                end: Alignment.bottomLeft,
+                                colors: [
+                                  Color(0xFF175F1C),
+                                  Color(0xFF151313),
+                                ],
+                              ),
+                            ),
+                            child: const Padding(
+                              padding: EdgeInsets.all(18.0),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Row(
-                                    children: const [
+                                    children: [
                                       Icon(
-                                        Icons.analytics,
+                                        Icons.article,
                                         size: 26.0,
-                                        color: Color.fromARGB(255, 9, 158, 9),
+                                          color: Colors.white60
                                       ),
                                       SizedBox(
                                         width: 15.0,
@@ -263,21 +239,23 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                         "Total Reports",
                                         style: TextStyle(
                                           fontSize: 25.0,
-                                          color: Color.fromARGB(255, 7, 255, 61),
                                           fontWeight: FontWeight.bold,
+                                            color: Colors.white60
                                         ),
                                       )
                                     ],
                                   ),
-                                  const SizedBox(
+                                  SizedBox(
                                     height: 20.0,
                                   ),
-                                  const Text(
-                                    "398",
-                                    style: TextStyle(
-                                      fontSize: 36,
-                                      color: Colors.amber,
-                                      fontWeight: FontWeight.bold,
+                                  Center(
+                                    child: Text(
+                                      "300",
+                                      style: TextStyle(
+                                        fontSize: 40,
+                                        fontWeight: FontWeight.bold,
+                                          color: Colors.white60
+                                      ),
                                     ),
                                   )
                                 ],
@@ -292,25 +270,37 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     ),
                     DataTable(
                       columns: const <DataColumn>[
-                        DataColumn(label: Text('Description',
-                        style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w800,
-                        color: Color.fromARGB(255, 12, 175, 26)),
+                        DataColumn(
+                            label: Text(
+                          'Address',
+                          style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w800,
+                              color: Color.fromARGB(255, 12, 175, 26)),
                         )),
-                        DataColumn(label: Text('Reported By',
-                        style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w800,
-                        color: Color.fromARGB(255, 16, 206, 32)),
+                        DataColumn(
+                            label: Text(
+                          'Category',
+                          style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w800,
+                              color: Color.fromARGB(255, 12, 175, 26)),
+                        )),
+                        DataColumn(
+                            label: Text(
+                          'Description',
+                          style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w800,
+                              color: Color.fromARGB(255, 16, 206, 32)),
                         )),
                       ],
                       rows: _reports
                           .map((report) => DataRow(cells: <DataCell>[
+                                DataCell(Text(report['address']!.toString())),
+                                DataCell(Text(report['category']!.toString())),
                                 DataCell(
                                     Text(report['description']!.toString())),
-                                DataCell(
-                                    Text(report['reported_by']!.toString())),
                               ]))
                           .toList(),
                     ),
